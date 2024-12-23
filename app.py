@@ -28,6 +28,10 @@ water = st.text_input("Water")
 ndt_upv = st.text_input("NDT/UPV")
 bitumen = st.text_input("Bitumen Division/Wooden")
 
+# Placeholder for signatures
+st.write("### Signatures")
+customer_signature = st.text_input("Customer's Representative Signature (Enter Name)")
+
 # Review Section
 st.write("### Review of Test Request (By Laboratory)")
 test_requirements = st.text_input("Requirements of test method defined and understood")
@@ -36,9 +40,8 @@ sample_condition = st.radio("Condition of Sample Received", ["Sealed", "Open"])
 discussion = st.text_input("Discussion with Customer, if any")
 statement_conformity = st.radio("Requirement of Statement of Conformity", ["Yes", "No"])
 
-# Placeholder for signatures
+
 st.write("### Signatures")
-customer_signature = st.text_input("Customer's Representative Signature (Enter Name)")
 technical_manager_signature = st.text_input("Technical Manager Signature (Enter Name)")
 
 # Generate PDF
@@ -74,6 +77,10 @@ if st.button("Generate PDF"):
     pdf.cell(200, 10, txt=f"NDT/UPV: {ndt_upv}", ln=True)
     pdf.cell(200, 10, txt=f"Bitumen Division/Wooden: {bitumen}", ln=True)
 
+     # Signatures
+    pdf.cell(200, 10, txt="Signatures:", ln=True)
+    pdf.cell(200, 10, txt=f"Customer's Representative: {customer_signature}", ln=True)
+
     # Review Section
     pdf.set_font("Arial", style="B", size=12)
     pdf.cell(200, 10, txt="Review of Test Request (By Laboratory)", ln=True)
@@ -86,7 +93,6 @@ if st.button("Generate PDF"):
 
     # Signatures
     pdf.cell(200, 10, txt="Signatures:", ln=True)
-    pdf.cell(200, 10, txt=f"Customer's Representative: {customer_signature}", ln=True)
     pdf.cell(200, 10, txt=f"Technical Manager: {technical_manager_signature}", ln=True)
 
     # Save PDF
